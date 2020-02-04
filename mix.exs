@@ -21,6 +21,7 @@ defmodule Auth0Jwks.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:httpoison, "~> 1.6"},
       {:joken, "~> 2.0"},
       {:joken_jwks, "~> 1.1.0"},
       {:plug_cowboy, "~> 2.0"},

@@ -112,8 +112,8 @@ defmodule Auth0Jwks.Config do
     end
   end
 
-  def iss, do: get_config_or_error(:auth0, :iss)
-  def aud, do: get_config_or_error(:auth0, :aud)
+  def iss, do: get_config_or_error(:auth0_jwks, :iss)
+  def aud, do: get_config_or_error(:auth0_jwks, :aud)
   def jwks_url, do: iss() <> ".well-known/jwks.json"
 end
 
