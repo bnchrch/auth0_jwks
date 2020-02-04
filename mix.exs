@@ -4,10 +4,20 @@ defmodule Auth0Jwks.MixProject do
   def project do
     [
       app: :auth0_jwks,
+      name: "Auth0 JWKs",
+      description: "🔌 An Auth0 plug for Elixir meant to help you decode and user Auth0 JWKs",
       version: "0.1.0",
       elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      source_url:   "https://github.com/bechurch/auth0_jwks",
+      homepage_url: "https://github.com/bechurch/auth0_jwks",
+
+      package: [
+        maintainers: ["Ben Church"],
+        licenses: ["MIT"],
+        links: %{"GitHub" => "https://github.com/bechurch/auth0_jwks"}
+      ],
     ]
   end
 
@@ -25,6 +35,7 @@ defmodule Auth0Jwks.MixProject do
       {:joken, "~> 2.0"},
       {:joken_jwks, "~> 1.1.0"},
       {:plug_cowboy, "~> 2.0"},
+      {:poison, "~> 4.0"},
     ]
   end
 end
