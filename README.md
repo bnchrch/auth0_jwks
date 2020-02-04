@@ -104,6 +104,7 @@ defmodule YourApp.Accounts do
     end
   end
 end
+```
 
 ## Fetching your user
 ```elixir
