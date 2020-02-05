@@ -21,8 +21,8 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/auth0_jwks](https://hexdocs.pm/auth0_jwks).
 
-## Configuring the library
-### Add your Auth0 config
+## Using the library
+### 1. Add your Auth0 config
 ```elixir
 # config.exs
 config :auth0_jwks, iss: System.get_env("AUTH0_DOMAIN"),
@@ -39,7 +39,7 @@ export AUTH0_DOMAIN="https://{your_app_name}.auth0.com/"
 export AUTH0_AUDIENCE="{your_custom_api_identified}"
 ```
 
-### Start your Auth0 Strategy
+### 2. Start your Auth0 Strategy
 ```elixir
 # application.ex
 defmodule YourApp.Application do
@@ -57,7 +57,7 @@ defmodule YourApp.Application do
 end
 ```
 
-## Adding the plugs
+### 3. Adding the plugs
 There exist two plugs:
 
 **1. ValidateToken**
@@ -68,7 +68,7 @@ This is used to ensure the given token is valid against Auth0's public jwks and 
 
 This plug takes one option `user_from_claim` which is where you define how you want to use the information from the claim to fetch or create a user. There exists many ways to handle this so we leave it up to you.
 
-### Example Router & Controller
+#### Example Router & Controller
 
 ```elixir
 # router.ex
@@ -103,10 +103,19 @@ defmodule YourApp.Accounts do
         existing_user
     end
   end
+
+  def get_user_by_sub(sub) do
+    # query your database or something
+  end
+
+  def create_user_from_auth0(auth0_user_info) do
+    # insert into your database or something
+  end
+
 end
 ```
 
-## Fetching your user
+### 4. Fetching your user
 ```elixir
 defmodule YourApp.AuthController do
   use YourAppWeb, :controller
@@ -120,3 +129,4 @@ defmodule YourApp.AuthController do
     |> json("User found with email #{current_user["email"]}")
   end
 end
+```
