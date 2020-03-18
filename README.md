@@ -6,7 +6,7 @@ This is an Elixir plug meant to make validating Auth0 tokens and creating users 
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
+If [available in Hex](https://hex.pm/packages/auth0_jwks), the package can be installed
 by adding `auth0_jwks` to your list of dependencies in `mix.exs`:
 
 ```elixir
