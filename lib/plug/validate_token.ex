@@ -22,6 +22,7 @@ defmodule Auth0Jwks.Plug.ValidateToken do
   end
   def extract_bearer_token(_), do: nil
 
+  def handle_token(nil, conn), do: Auth0Jwks.Plug.Response.unauthorized(conn)
   def handle_token(token, conn) do
     token
     |> Auth0Jwks.Token.verify_and_validate()
