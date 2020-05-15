@@ -1,12 +1,15 @@
 defmodule Auth0Jwks.UserInfo do
   use HTTPoison.Base
 
+  alias Auth0Jwks.Config
+
   def from_token(token) do
     auth_header = {"Authorization", "Bearer #{token}"}
+
     with {:ok, response} <- get("userinfo", [auth_header]) do
       response
       |> Map.get(:body)
-      |> Poison.decode()
+      |> Config.json_library().decode()
     end
   end
 

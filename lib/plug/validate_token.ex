@@ -20,15 +20,16 @@ defmodule Auth0Jwks.Plug.ValidateToken do
       _ -> nil
     end
   end
+
   def extract_bearer_token(_), do: nil
 
   def handle_token(nil, conn), do: Auth0Jwks.Plug.Response.unauthorized(conn)
+
   def handle_token(token, conn) do
     token
     |> Auth0Jwks.Token.verify_and_validate()
     |> case do
       {:ok, claims} ->
-
         conn
         |> assign(:auth0_claims, claims)
         |> assign(:auth0_access_token, token)

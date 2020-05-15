@@ -1,5 +1,6 @@
 defmodule Auth0Jwks.Plug.Response do
   import Plug.Conn
+
   def user_not_found(conn) do
     conn
     |> send_resp(403, "user not found")
