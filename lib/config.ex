@@ -7,6 +7,7 @@ defmodule Auth0Jwks.Config do
     case Application.get_env(parent, child) do
       nil ->
         raise MissingValueError, message: "Auth0 config [:#{parent}, :#{child}] is not set"
+
       value ->
         value
     end
@@ -16,6 +17,7 @@ defmodule Auth0Jwks.Config do
     case Keyword.get(opts, opt_to_get) do
       nil ->
         raise MissingValueError, message: "#{parent_module} config :#{opt_to_get} is not set"
+
       value ->
         value
     end
@@ -24,4 +26,6 @@ defmodule Auth0Jwks.Config do
   def iss, do: get_config_or_error(:auth0_jwks, :iss)
   def aud, do: get_config_or_error(:auth0_jwks, :aud)
   def jwks_url, do: iss() <> ".well-known/jwks.json"
+
+  def json_library, do: Application.get_env(:auth0_jwks, :json_library) || Poison
 end
