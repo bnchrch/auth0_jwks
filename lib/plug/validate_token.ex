@@ -4,11 +4,11 @@ defmodule Auth0Jwks.Plug.ValidateToken do
 
   def init(opts), do: opts
 
-  def call(conn, _) do
+  def call(conn, opts) do
     conn
     |> get_req_header("authorization")
     |> extract_bearer_token()
-    |> handle_token(conn)
+    |> handle_token(conn, opts)
   end
 
   def extract_bearer_token([header | _]) do
@@ -23,9 +23,9 @@ defmodule Auth0Jwks.Plug.ValidateToken do
 
   def extract_bearer_token(_), do: nil
 
-  def handle_token(nil, conn), do: Auth0Jwks.Plug.Response.unauthorized(conn)
+  def handle_token(nil, conn, opts), do: Auth0Jwks.Plug.Response.unauthorized(conn, opts)
 
-  def handle_token(token, conn) do
+  def handle_token(token, conn, opts) do
     token
     |> Auth0Jwks.Token.verify_and_validate()
     |> case do
@@ -35,7 +35,7 @@ defmodule Auth0Jwks.Plug.ValidateToken do
         |> assign(:auth0_access_token, token)
 
       _ ->
-        Auth0Jwks.Plug.Response.unauthorized(conn)
+        Auth0Jwks.Plug.Response.unauthorized(conn, opts)
     end
   end
 end

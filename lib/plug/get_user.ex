@@ -12,9 +12,9 @@ defmodule Auth0Jwks.Plug.GetUser do
         assign(conn, :current_user, current_user)
 
       _ ->
-        Auth0Jwks.Plug.Response.user_not_found(conn)
+        Auth0Jwks.Plug.Response.user_not_found(conn, opts)
     end
   end
 
-  def call(conn, _), do: Auth0Jwks.Plug.Response.user_not_found(conn)
+  def call(conn, opts), do: Auth0Jwks.Plug.Response.user_not_found(conn, opts)
 end
