@@ -12,7 +12,7 @@ by adding `auth0_jwks` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:auth0_jwks, "~> 0.1.1"}
+    {:auth0_jwks, "~> 0.2.0"}
   ]
 end
 ```
@@ -128,5 +128,26 @@ defmodule YourApp.AuthController do
     |> put_status(:accepted)
     |> json("User found with email #{current_user["email"]}")
   end
+end
+```
+
+## Additional Configuration
+### 1. Set your json parse library
+In your config you can specify an alternative JSON parsing librar
+```elixir
+# config.exs
+config :auth0_jwks, iss: System.get_env("AUTH0_DOMAIN"),
+                    aud: System.get_env("AUTH0_AUDIENCE"),
+                    json_library: Jason
+```
+
+### 1. No not halt on missing Token or User
+You can tell each plug not to halt if theres no token or user
+```elixir
+# router.ex
+pipeline :api do
+  plug :accepts, ["json"]
+  plug Auth0Jwks.Plug.ValidateToken, no_halt: true
+  plug Auth0Jwks.Plug.GetUser, no_halt: true, user_from_claim: &YourApp.Accounts.user_from_claim/2
 end
 ```
