@@ -14,4 +14,6 @@ defmodule Auth0Jwks.UserInfo do
   end
 
   def process_url(path), do: Auth0Jwks.Config.iss() <> path
+  def process_request_options(opts), do: opts ++ [timeout: Auth0Jwks.Config.timeout(), recv_timeout: Auth0Jwks.Config.timeout()]
+
 end
