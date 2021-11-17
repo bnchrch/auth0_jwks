@@ -6,7 +6,7 @@ defmodule Auth0Jwks.MixProject do
       app: :auth0_jwks,
       name: "Auth0 JWKs",
       description: "🔌 An Auth0 plug for Elixir meant to help you decode and user Auth0 JWKs",
-      version: "0.3.0",
+      version: "0.3.1",
       elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
