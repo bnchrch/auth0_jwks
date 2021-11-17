@@ -32,9 +32,9 @@ defmodule Auth0Jwks.MixProject do
     [
       {:ex_doc, "~> 0.23", only: :dev, runtime: false},
       {:httpoison, "~> 1.6"},
-      {:joken, "~> 2.0"},
-      {:joken_jwks, "~> 1.1.0"},
-      {:plug_cowboy, "~> 2.0"},
+      {:joken, "~> 2.4"},
+      {:joken_jwks, "~> 1.4"},
+      {:plug_cowboy, "~> 2.2"},
       {:poison, "~> 4.0", optional: true}
     ]
   end
