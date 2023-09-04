@@ -35,7 +35,7 @@ defmodule Auth0Jwks.MixProject do
       {:joken, "~> 2.4"},
       {:joken_jwks, "~> 1.4"},
       {:plug_cowboy, "~> 2.2"},
-      {:poison, "~> 4.0", optional: true}
+      {:poison, "~> 4.0 or ~> 5.0", optional: true}
     ]
   end
 end
