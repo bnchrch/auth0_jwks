@@ -12,7 +12,7 @@ by adding `auth0_jwks` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:auth0_jwks, "~> 0.2.0"}
+    {:auth0_jwks, "~> 0.3.2"}
   ]
 end
 ```
